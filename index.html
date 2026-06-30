@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1d3a" />
+  <title>Nuova — Italian you can actually say.</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Global audio status banner (shown on fallback) -->
+  <div id="audio-banner" class="audio-banner" role="status" hidden></div>
+
+  <!-- ===================== HOME SCREEN ===================== -->
+  <main id="home" class="screen active">
+    <header class="brand">
+      <div class="logo">Nuova</div>
+      <p class="tagline">Italian you can actually say.</p>
+    </header>
+
+    <section class="card hero-card">
+      <h1 class="lesson-title" id="home-lesson-title">Lesson 001 – Talking About Uncertainty</h1>
+      <p class="grammar-focus" id="home-grammar-focus">Grammar focus…</p>
+      <p class="hero-copy">Practise natural Italian sentences until you can say them automatically.</p>
+
+      <div class="home-actions">
+        <button id="btn-start" class="btn btn-primary btn-big">Start lesson</button>
+        <button id="btn-continue" class="btn btn-secondary btn-big">Continue</button>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar"><div id="home-progress-fill" class="progress-fill"></div></div>
+        <p id="home-progress-label" class="progress-label">Not started</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <button class="collapse-toggle" data-target="home-grammar">Grammar explanation ▾</button>
+      <div id="home-grammar" class="collapse-body"></div>
+    </section>
+
+    <section class="card">
+      <button class="collapse-toggle" data-target="home-mastery">Mastery checklist ▾</button>
+      <div id="home-mastery" class="collapse-body"></div>
+    </section>
+
+    <p class="footer-note">No account, no internet needed. Audio uses your device's built-in voices.</p>
+  </main>
+
+  <!-- ===================== PLAYER SCREEN ===================== -->
+  <main id="player" class="screen">
+    <header class="player-top">
+      <button id="btn-home" class="btn btn-ghost" aria-label="Back to home">‹ Home</button>
+      <div class="player-title">Nuova</div>
+      <button id="btn-settings-toggle" class="btn btn-ghost" aria-label="Audio settings">⚙</button>
+    </header>
+
+    <!-- Mode selector -->
+    <div class="mode-bar" id="mode-bar" role="tablist" aria-label="Playback modes"></div>
+
+    <!-- Settings panel -->
+    <section id="settings-panel" class="settings-panel" hidden>
+      <h2>Audio settings</h2>
+      <label class="field">
+        <span>Italian voice (premium)</span>
+        <select id="it-voice-eleven"></select>
+      </label>
+      <label class="field">
+        <span>Italian speed</span>
+        <select id="it-speed">
+          <option value="slow">Slow</option>
+          <option value="normal" selected>Normal</option>
+          <option value="fast">Fast</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>English speed</span>
+        <select id="en-speed">
+          <option value="slow">Slow</option>
+          <option value="normal" selected>Normal</option>
+          <option value="fast">Fast</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Italian voice (browser fallback)</span>
+        <select id="it-voice"><option value="">Auto (it-IT)</option></select>
+      </label>
+      <label class="field">
+        <span>English voice</span>
+        <select id="en-voice"><option value="">Auto (en)</option></select>
+      </label>
+      <p id="voice-warning" class="voice-warning"></p>
+    </section>
+
+    <!-- Sentence card -->
+    <section class="card sentence-card">
+      <div class="sentence-meta">
+        <span id="section-name" class="section-name">Core Sentences</span>
+        <span id="sentence-counter" class="sentence-counter">1 / 10</span>
+      </div>
+
+      <p id="italian-text" class="italian-text">—</p>
+
+      <div class="translation-block">
+        <p class="trans-label">Literal</p>
+        <p id="literal-text" class="literal-text">—</p>
+      </div>
+      <div class="translation-block">
+        <p class="trans-label">Natural</p>
+        <p id="natural-text" class="natural-text">—</p>
+      </div>
+
+      <div class="grammar-note">
+        <span class="note-icon">💡</span>
+        <p id="grammar-note-text">—</p>
+      </div>
+
+      <p id="recall-hint" class="recall-hint" hidden>Listen, then say it in Italian…</p>
+    </section>
+
+    <p id="audio-source" class="audio-source">🎙 Premium Italian voice (ElevenLabs)</p>
+
+    <!-- Transport controls -->
+    <div class="controls">
+      <button id="btn-prev" class="ctl" aria-label="Previous">⏮</button>
+      <button id="btn-repeat" class="ctl" aria-label="Repeat">↻</button>
+      <button id="btn-play" class="ctl ctl-play" aria-label="Play or pause">▶</button>
+      <button id="btn-next" class="ctl" aria-label="Next">⏭</button>
+    </div>
+
+    <div class="controls-secondary">
+      <button id="btn-difficult" class="btn btn-secondary">★ Mark difficult</button>
+      <button id="btn-complete" class="btn btn-primary">✓ Complete sentence</button>
+    </div>
+
+    <div class="progress-wrap player-progress">
+      <div class="progress-bar"><div id="player-progress-fill" class="progress-fill"></div></div>
+      <p id="player-progress-label" class="progress-label">0 completed</p>
+    </div>
+
+    <p id="status-line" class="status-line" aria-live="polite"></p>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
