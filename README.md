@@ -177,15 +177,20 @@ things to know:
   Italian text) and shows a warning in *Audio settings*. On macOS/iOS add one via
   *System Settings → Accessibility → Spoken Content → System Voice → Manage Voices*;
   on Windows via *Settings → Time & Language → Language → add Italian*.
-- **iOS Safari requires a user tap before speech.** The first sound only plays
-  after you tap a button. iOS is especially strict about HTML5 `Audio` (used for
-  the premium ElevenLabs clips): the element must be *unlocked* inside the tap
-  itself. Nuova handles this by priming a single reused `<audio>` element
-  synchronously the moment you tap **Play** (before the network request runs), so
-  the premium clip is allowed to play on iPhone Safari. If playback is ever
-  blocked anyway, the app logs it to the console and falls back to the browser
-  `it-IT` voice with the on-screen banner. The status line shows live state:
-  "Fetching premium audio…" → "Playing premium Italian…".
+- **Premium clips play through the Web Audio API.** Instead of an `<audio>`
+  element (which some browsers stall on blob URLs), Nuova fetches the ElevenLabs
+  MP3, decodes it with `AudioContext.decodeAudioData`, and plays it through an
+  `AudioBufferSourceNode`. This is the most reliable cross-browser path and the
+  standard way to make audio work on iOS Safari.
+- **iOS Safari requires a user tap before sound.** iOS starts the `AudioContext`
+  suspended; it must be resumed inside a user gesture. Nuova resumes the context
+  (and plays a one-sample silent buffer to unlock it) synchronously the moment
+  you tap **Play**, before the network request runs — so the decoded clip is
+  allowed to play on iPhone Safari. A watchdog guarantees the lesson never hangs
+  if a clip fails. If premium audio can't play (quota, decode error, or no Web
+  Audio support) the app logs it and falls back to the browser `it-IT` voice with
+  the on-screen banner. The status line shows live state: "Fetching premium
+  audio…" → "Playing premium Italian…".
 - Voices often load **asynchronously**; Nuova listens for `voiceschanged` and
   refreshes the voice list automatically.
 

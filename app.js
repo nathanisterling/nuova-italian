@@ -55,33 +55,40 @@
   // ElevenLabs runtime state
   let elevenDisabled = false;     // true once quota is exhausted on all keys
   let keyIndex = 0;               // index of the working key
-  const clipCache = new Map();    // `${voiceId}|${text}` -> object URL
-  let currentAudio = null;        // active HTMLAudioElement (alias of audioEl while playing)
+  const clipCache = new Map();    // `${voiceId}|${text}` -> decoded AudioBuffer
 
-  // ---- iOS audio unlock ----
-  // A SINGLE reused <audio> element. iOS Safari only lets an element play if
-  // it was first started inside a user gesture; once "blessed" it can be
-  // controlled programmatically (even after an await). We prime it on the
-  // very first Play tap, synchronously, before any fetch happens.
-  let audioEl = null;
+  // ---- Web Audio engine + iOS unlock ----
+  // We play the ElevenLabs MP3 via the Web Audio API (decodeAudioData +
+  // AudioBufferSourceNode) instead of an <audio> element. This is far more
+  // reliable across browsers (some stall HTMLAudio on blob URLs) and is the
+  // standard way to get audio working on iOS Safari: create/resume the
+  // AudioContext inside the user gesture, then buffers can be played anytime.
+  let audioCtx = null;
   let audioUnlocked = false;
-  const SILENT_WAV = "data:audio/wav;base64,UklGRhQBAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YfAAAACAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIA=";
+  let currentSource = null;       // active AudioBufferSourceNode
 
-  function getAudioEl() {
-    if (!audioEl) { audioEl = new Audio(); audioEl.preload = "auto"; }
-    return audioEl;
+  function getCtx() {
+    if (!audioCtx) {
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (AC) audioCtx = new AC();
+    }
+    return audioCtx;
   }
 
-  // Must be called SYNCHRONOUSLY from within a user-gesture handler.
+  // Must be called SYNCHRONOUSLY from within a user-gesture handler (iOS).
   function unlockAudio() {
-    if (audioUnlocked) return;
-    audioUnlocked = true;
-    const a = getAudioEl();
     try {
-      a.src = SILENT_WAV;
-      const p = a.play();
-      if (p && p.then) p.then(() => { try { a.pause(); a.currentTime = 0; } catch (e) {} })
-                        .catch((e) => { console.warn("[Nuova] silent unlock blocked:", e && e.name); });
+      const ctx = getCtx();
+      if (ctx) {
+        if (ctx.state === "suspended") ctx.resume();
+        if (!audioUnlocked) {
+          // Play one silent sample to fully unlock the context on iOS.
+          const buf = ctx.createBuffer(1, 1, 22050);
+          const src = ctx.createBufferSource();
+          src.buffer = buf; src.connect(ctx.destination); src.start(0);
+        }
+      }
+      audioUnlocked = true;
     } catch (e) { console.warn("[Nuova] unlockAudio error:", e); }
     // iOS also gates speechSynthesis behind a gesture — prime it too.
     try {
@@ -257,11 +264,19 @@
           const ct = r.headers.get("content-type") || "";
           console.log(`[Nuova] ElevenLabs key#${(keyIndex + k) % ELEVEN.keys.length} → HTTP ${r.status} (${ct})`);
           if (r.ok && ct.includes("audio")) {
-            const blob = await r.blob();
-            const objUrl = URL.createObjectURL(blob);
-            clipCache.set(cacheKey, objUrl);
+            const arr = await r.arrayBuffer();
+            const ctx = getCtx();
+            if (!ctx) return null; // no Web Audio support → caller falls back
+            let buffer;
+            try {
+              buffer = await ctx.decodeAudioData(arr.slice(0));
+            } catch (e) {
+              console.warn("[Nuova] decodeAudioData failed:", e && e.message);
+              return null; // fall back to web speech for this utterance
+            }
+            clipCache.set(cacheKey, buffer);
             keyIndex = (keyIndex + k) % ELEVEN.keys.length; // remember working key
-            return objUrl;
+            return buffer;
           }
           if (r.status === 401 || r.status === 429) { sawQuota = true; continue; } // try next key
           // other HTTP error: try next key as well
@@ -295,39 +310,39 @@
     });
   }
 
-  // Reuse the SINGLE blessed element. Returns false if playback was blocked
-  // by the browser (so the caller can fall back to Web Speech).
-  function playClip(objUrl, token) {
+  // Play a decoded AudioBuffer via Web Audio. Resolves true when the clip
+  // finishes (or is stopped); false if it could not be started (→ fall back).
+  function playClip(buffer, token) {
     return new Promise((resolve) => {
       if (token !== runToken || !isPlaying) { resolve(true); return; }
-      const a = getAudioEl();
+      const ctx = getCtx();
+      if (!ctx) { resolve(false); return; }
       let done = false;
+      let watchdog = null;
       const finish = (ok) => {
         if (done) return; done = true;
-        a.onended = null; a.onerror = null;
-        if (currentAudio === a) currentAudio = null;
+        if (watchdog) clearTimeout(watchdog);
+        if (currentSource === src) currentSource = null;
         resolve(ok !== false);
       };
-      a._finish = () => finish(true);
-      currentAudio = a;
-      a.onended = () => finish(true);
-      a.onerror = () => finish(true);
+      let src;
       try {
-        a.muted = false;
-        a.src = objUrl;
-        a.currentTime = 0;
-        a.playbackRate = RATE[prefs.itSpeed];
-      } catch (e) {}
-      const p = a.play();
-      if (p && p.then) {
-        p.then(() => {
-          status("🎙 Playing premium Italian…");
-          if (token !== runToken || !isPlaying) { try { a.pause(); } catch (e) {} finish(true); }
-        }).catch((err) => {
-          // iOS blocked playback (not unlocked in a gesture) — report and fall back.
-          console.warn("[Nuova] audio.play() blocked:", err && err.name, err && err.message);
-          finish(false);
-        });
+        if (ctx.state === "suspended") ctx.resume();
+        src = ctx.createBufferSource();
+        src.buffer = buffer;
+        try { src.playbackRate.value = RATE[prefs.itSpeed]; } catch (e) {}
+        src.connect(ctx.destination);
+        src.onended = () => finish(true);
+        currentSource = src;
+        src._finish = () => finish(true);
+        src.start(0);
+        status("🎙 Playing premium Italian…");
+        // Safety net: never hang the lesson if onended doesn't fire.
+        const ms = (buffer.duration / (RATE[prefs.itSpeed] || 1)) * 1000 + 2000;
+        watchdog = setTimeout(() => finish(true), ms);
+      } catch (err) {
+        console.warn("[Nuova] Web Audio playback failed:", err && err.message);
+        finish(false);
       }
     });
   }
@@ -423,9 +438,12 @@
     isPlaying = false;
     runToken++;
     if ("speechSynthesis" in window) window.speechSynthesis.cancel();
-    // Pause (don't discard) the reused, blessed audio element.
-    if (audioEl) { try { audioEl.pause(); } catch (e) {} if (audioEl._finish) audioEl._finish(); }
-    currentAudio = null;
+    // Stop the active Web Audio source (fires its onended → resolves playClip).
+    if (currentSource) {
+      const s = currentSource; currentSource = null;
+      try { s.onended = null; s.stop(); } catch (e) {}
+      if (s._finish) s._finish();
+    }
     setPlayUI(false);
   }
 
