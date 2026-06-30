@@ -1,0 +1,153 @@
+{
+  "id": "lesson-001",
+  "title": "Lesson 001 – Talking About Uncertainty",
+  "grammarFocus": "penso che / credo che / mi sembra che / pare che / ho l'impressione che + present subjunctive",
+  "objective": "Learn to express uncertainty, impressions, opinions, and doubt using natural Italian.",
+  "corePatterns": [
+    { "pattern": "Penso che + congiuntivo", "meaning": "I think that ..." },
+    { "pattern": "Credo che + congiuntivo", "meaning": "I believe that ..." },
+    { "pattern": "Mi sembra che + congiuntivo", "meaning": "It seems to me that ..." },
+    { "pattern": "Pare che + congiuntivo", "meaning": "It seems / apparently ..." },
+    { "pattern": "Ho l'impressione che + congiuntivo", "meaning": "I get the impression that ..." }
+  ],
+  "sentences": [
+    {
+      "section": "Core Sentences",
+      "italian": "Penso che sia una buona idea.",
+      "literal": "I think that it be a good idea.",
+      "natural": "I think it's a good idea.",
+      "note": "After 'penso che', Italian often uses the subjunctive: 'sia', not 'è'."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "Non credo che sia così semplice.",
+      "literal": "I don't believe that it be so simple.",
+      "natural": "I don't think it's that simple.",
+      "note": "Negative opinion phrases often trigger the subjunctive."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "Mi sembra che tu abbia ragione.",
+      "literal": "It seems to me that you have-subjunctive reason.",
+      "natural": "It seems to me that you're right.",
+      "note": "'Tu abbia' is subjunctive. Italian says 'you have reason' for 'you're right'."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "Ho l'impressione che stiano aspettando noi.",
+      "literal": "I have the impression that they be waiting for us.",
+      "natural": "I get the impression they're waiting for us.",
+      "note": "'Stiano' is the subjunctive form of 'stare'."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "Pare che il treno sia in ritardo.",
+      "literal": "It seems that the train be late.",
+      "natural": "Apparently, the train is late.",
+      "note": "'Pare che' often introduces information that feels uncertain or reported."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "Dubito che funzioni davvero.",
+      "literal": "I doubt that it work really.",
+      "natural": "I doubt it really works.",
+      "note": "'Dubito che' strongly triggers the subjunctive."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "È possibile che abbiano già deciso.",
+      "literal": "It is possible that they have-subjunctive already decided.",
+      "natural": "It's possible they've already decided.",
+      "note": "'È possibile che' takes the subjunctive because the idea is uncertain."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "Non sono sicuro che venga anche lui.",
+      "literal": "I am not sure that he come also him.",
+      "natural": "I'm not sure he's coming too.",
+      "note": "'Venga' is the subjunctive form of 'venire'."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "Mi sa che abbiamo sbagliato strada.",
+      "literal": "To me it knows that we have taken the wrong road.",
+      "natural": "I think we've gone the wrong way.",
+      "note": "'Mi sa che' is a very common spoken phrase. It often uses the indicative."
+    },
+    {
+      "section": "Core Sentences",
+      "italian": "Può darsi che abbiano capito male.",
+      "literal": "It can give itself that they have-subjunctive understood badly.",
+      "natural": "Maybe they misunderstood.",
+      "note": "'Può darsi che' is a very useful uncertainty phrase and takes the subjunctive."
+    }
+  ],
+  "patternDrill": [
+    {
+      "italian": "Penso che sia meglio aspettare.",
+      "literal": "I think that it be better to wait.",
+      "natural": "I think it's better to wait."
+    },
+    {
+      "italian": "Credo che abbia senso.",
+      "literal": "I believe that it have sense.",
+      "natural": "I think it makes sense."
+    },
+    {
+      "italian": "Mi sembra che manchi qualcosa.",
+      "literal": "It seems to me that something be missing.",
+      "natural": "It seems like something is missing."
+    },
+    {
+      "italian": "Pare che abbiano cambiato idea.",
+      "literal": "It seems that they have-subjunctive changed idea.",
+      "natural": "Apparently, they changed their mind."
+    },
+    {
+      "italian": "Non credo che funzioni bene.",
+      "literal": "I don't believe that it work well.",
+      "natural": "I don't think it works well."
+    }
+  ],
+  "activeRecall": [
+    { "prompt": "I think it's a good idea.", "answer": "Penso che sia una buona idea." },
+    { "prompt": "I don't think it's that simple.", "answer": "Non credo che sia così semplice." },
+    { "prompt": "It seems to me that you're right.", "answer": "Mi sembra che tu abbia ragione." },
+    { "prompt": "Apparently, the train is late.", "answer": "Pare che il treno sia in ritardo." },
+    { "prompt": "Maybe they misunderstood.", "answer": "Può darsi che abbiano capito male." }
+  ],
+  "conversationBuilder": [
+    { "speaker": "A", "italian": "Pensi che sia una buona idea?", "natural": "Do you think it's a good idea?" },
+    { "speaker": "B", "italian": "Non lo so. Non credo che sia così semplice.", "natural": "I don't know. I don't think it's that simple." },
+    { "speaker": "A", "italian": "Mi sembra che tu abbia qualche dubbio.", "natural": "It seems to me that you have some doubts." },
+    { "speaker": "B", "italian": "Sì, ho l'impressione che manchi qualcosa.", "natural": "Yes, I get the impression something is missing." },
+    { "speaker": "A", "italian": "Può darsi che tu abbia ragione.", "natural": "Maybe you're right." }
+  ],
+  "grammarExplanation": {
+    "intro": "In Italian, when you express uncertainty, opinion, doubt, possibility, or impression, you often use the subjunctive after \"che\".",
+    "comparison": [
+      { "label": "Indicative", "italian": "È una buona idea.", "english": "It is a good idea." },
+      { "label": "Subjunctive", "italian": "Penso che sia una buona idea.", "english": "I think it is a good idea." }
+    ],
+    "explanation": "The idea is no longer a plain fact; it's filtered through opinion, doubt, impression, or uncertainty.",
+    "commonTriggers": [
+      "penso che", "credo che", "non credo che", "mi sembra che",
+      "pare che", "dubito che", "è possibile che", "può darsi che"
+    ],
+    "usefulForms": [
+      { "verb": "essere", "form": "sia" },
+      { "verb": "avere", "form": "abbia" },
+      { "verb": "stare", "form": "stia / stiano" },
+      { "verb": "venire", "form": "venga" },
+      { "verb": "funzionare", "form": "funzioni" }
+    ],
+    "note": "Native speakers sometimes use the indicative in casual speech (especially after penso che / credo che), but the subjunctive is safer, more educated, and very useful at B1/B2."
+  },
+  "masteryChecklist": [
+    "Say all 10 sentences without reading.",
+    "Recognise the subjunctive forms sia, abbia, stiano, venga, funzioni.",
+    "Translate the 5 active-recall prompts into Italian.",
+    "Create 3 new sentences using penso che, mi sembra che, può darsi che.",
+    "Explain why Italian uses the subjunctive after uncertainty phrases."
+  ]
+}
