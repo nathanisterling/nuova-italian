@@ -80,6 +80,76 @@
       "literal": "It can give itself that they have-subjunctive understood badly.",
       "natural": "Maybe they misunderstood.",
       "note": "'Può darsi che' is a very useful uncertainty phrase and takes the subjunctive."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Credo che faccia troppo freddo per uscire.",
+      "literal": "I believe that it make too much cold to go out.",
+      "natural": "I think it's too cold to go out.",
+      "note": "'Faccia' is the subjunctive of 'fare'. Italian says 'fa freddo' (it makes cold) for 'it's cold'."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Spero che tu possa venire alla festa.",
+      "literal": "I hope that you can-subjunctive come to the party.",
+      "natural": "I hope you can come to the party.",
+      "note": "'Spero che' (I hope) takes the subjunctive. 'Possa' is from 'potere'."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Temo che non ci sia più tempo.",
+      "literal": "I fear that there be no more time.",
+      "natural": "I'm afraid there's no time left.",
+      "note": "'Temo che' (I fear) triggers the subjunctive. 'Ci sia' means 'there is'."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "È probabile che arrivino in ritardo.",
+      "literal": "It is probable that they arrive-subjunctive late.",
+      "natural": "They'll probably arrive late.",
+      "note": "'È probabile che' expresses likelihood, so it takes the subjunctive 'arrivino'."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Mi sembra che lui non dica la verità.",
+      "literal": "It seems to me that he not say-subjunctive the truth.",
+      "natural": "It seems to me he's not telling the truth.",
+      "note": "'Dica' is the subjunctive of 'dire'."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Pare che la riunione vada avanti senza di noi.",
+      "literal": "It seems that the meeting go-subjunctive ahead without of us.",
+      "natural": "Apparently the meeting is going ahead without us.",
+      "note": "'Vada' is the subjunctive of 'andare'."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Non sono sicuro che riesca a finire in tempo.",
+      "literal": "I am not sure that he succeed-subjunctive to finish in time.",
+      "natural": "I'm not sure he'll manage to finish in time.",
+      "note": "'Riesca' is the subjunctive of 'riuscire' (to manage / succeed)."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Credo che non capisca bene l'italiano.",
+      "literal": "I believe that he not understand-subjunctive well the Italian.",
+      "natural": "I don't think he understands Italian well.",
+      "note": "'Capisca' is the subjunctive of 'capire'. Italian often keeps the doubt on the 'credo che' clause."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Dubito che lui sappia cosa sta succedendo.",
+      "literal": "I doubt that he know-subjunctive what is happening.",
+      "natural": "I doubt he knows what's going on.",
+      "note": "'Sappia' is the subjunctive of 'sapere'."
+    },
+    {
+      "section": "More Sentences",
+      "italian": "Può darsi che vogliano cambiare programma.",
+      "literal": "It can give itself that they want-subjunctive to change plan.",
+      "natural": "Maybe they want to change the plan.",
+      "note": "'Vogliano' is the subjunctive of 'volere'."
     }
   ],
   "patternDrill": [
@@ -139,13 +209,21 @@
       { "verb": "avere", "form": "abbia" },
       { "verb": "stare", "form": "stia / stiano" },
       { "verb": "venire", "form": "venga" },
-      { "verb": "funzionare", "form": "funzioni" }
+      { "verb": "funzionare", "form": "funzioni" },
+      { "verb": "fare", "form": "faccia" },
+      { "verb": "andare", "form": "vada" },
+      { "verb": "dire", "form": "dica" },
+      { "verb": "potere", "form": "possa" },
+      { "verb": "sapere", "form": "sappia" },
+      { "verb": "volere", "form": "voglia / vogliano" },
+      { "verb": "riuscire", "form": "riesca" },
+      { "verb": "capire", "form": "capisca" }
     ],
     "note": "Native speakers sometimes use the indicative in casual speech (especially after penso che / credo che), but the subjunctive is safer, more educated, and very useful at B1/B2."
   },
   "masteryChecklist": [
-    "Say all 10 sentences without reading.",
-    "Recognise the subjunctive forms sia, abbia, stiano, venga, funzioni.",
+    "Say all 20 sentences without reading.",
+    "Recognise the subjunctive forms sia, abbia, faccia, vada, dica, possa, sappia, voglia, riesca, capisca.",
     "Translate the 5 active-recall prompts into Italian.",
     "Create 3 new sentences using penso che, mi sembra che, può darsi che.",
     "Explain why Italian uses the subjunctive after uncertainty phrases."
