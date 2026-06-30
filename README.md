@@ -178,8 +178,14 @@ things to know:
   *System Settings → Accessibility → Spoken Content → System Voice → Manage Voices*;
   on Windows via *Settings → Time & Language → Language → add Italian*.
 - **iOS Safari requires a user tap before speech.** The first sound only plays
-  after you tap a button. Nuova starts speech from your Play tap, so this works —
-  just remember audio won't auto-start before you interact.
+  after you tap a button. iOS is especially strict about HTML5 `Audio` (used for
+  the premium ElevenLabs clips): the element must be *unlocked* inside the tap
+  itself. Nuova handles this by priming a single reused `<audio>` element
+  synchronously the moment you tap **Play** (before the network request runs), so
+  the premium clip is allowed to play on iPhone Safari. If playback is ever
+  blocked anyway, the app logs it to the console and falls back to the browser
+  `it-IT` voice with the on-screen banner. The status line shows live state:
+  "Fetching premium audio…" → "Playing premium Italian…".
 - Voices often load **asynchronously**; Nuova listens for `voiceschanged` and
   refreshes the voice list automatically.
 
