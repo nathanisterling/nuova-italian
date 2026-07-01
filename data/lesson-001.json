@@ -16,167 +16,172 @@
       "italian": "Penso che sia una buona idea.",
       "literal": "I think that it be a good idea.",
       "natural": "I think it's a good idea.",
-      "note": "After 'penso che', Italian often uses the subjunctive: 'sia', not 'è'."
+      "note": "After 'penso che', Italian often uses the subjunctive: 'sia' is the subjunctive of essere; the plain indicative would be 'è'."
     },
     {
       "section": "Core Sentences",
       "italian": "Non credo che sia così semplice.",
       "literal": "I don't believe that it be so simple.",
       "natural": "I don't think it's that simple.",
-      "note": "Negative opinion phrases often trigger the subjunctive."
+      "note": "Negative opinion phrases often trigger the subjunctive. Here 'sia' is the subjunctive of essere; the plain indicative would be 'è'."
     },
     {
       "section": "Core Sentences",
       "italian": "Mi sembra che tu abbia ragione.",
       "literal": "It seems to me that you have-subjunctive reason.",
       "natural": "It seems to me that you're right.",
-      "note": "'Tu abbia' is subjunctive. Italian says 'you have reason' for 'you're right'."
+      "note": "'tu abbia' is the subjunctive of avere; the plain indicative would be 'tu hai'. Italian says 'you have reason' for 'you're right'."
     },
     {
       "section": "Core Sentences",
       "italian": "Ho l'impressione che stiano aspettando noi.",
       "literal": "I have the impression that they be waiting for us.",
       "natural": "I get the impression they're waiting for us.",
-      "note": "'Stiano' is the subjunctive form of 'stare'."
+      "note": "'stiano' is the subjunctive of stare; the plain indicative would be 'stanno' (and 'stia' → 'sta')."
     },
     {
       "section": "Core Sentences",
       "italian": "Pare che il treno sia in ritardo.",
       "literal": "It seems that the train be late.",
       "natural": "Apparently, the train is late.",
-      "note": "'Pare che' often introduces information that feels uncertain or reported."
+      "note": "'Pare che' often introduces information that feels uncertain or reported. Here 'sia' is the subjunctive of essere; the plain indicative would be 'è'."
     },
     {
       "section": "Core Sentences",
       "italian": "Dubito che funzioni davvero.",
       "literal": "I doubt that it work really.",
       "natural": "I doubt it really works.",
-      "note": "'Dubito che' strongly triggers the subjunctive."
+      "note": "'Dubito che' strongly triggers the subjunctive. 'funzioni' is the subjunctive of funzionare; the plain indicative would be 'funziona'."
     },
     {
       "section": "Core Sentences",
       "italian": "È possibile che abbiano già deciso.",
       "literal": "It is possible that they have-subjunctive already decided.",
       "natural": "It's possible they've already decided.",
-      "note": "'È possibile che' takes the subjunctive because the idea is uncertain."
+      "note": "'È possibile che' takes the subjunctive because the idea is uncertain. 'abbiano' is the subjunctive of avere (loro); the plain indicative would be 'hanno'."
     },
     {
       "section": "Core Sentences",
       "italian": "Non sono sicuro che venga anche lui.",
       "literal": "I am not sure that he come also him.",
       "natural": "I'm not sure he's coming too.",
-      "note": "'Venga' is the subjunctive form of 'venire'."
+      "note": "'venga' is the subjunctive of venire; the plain indicative would be 'viene'."
     },
     {
       "section": "Core Sentences",
       "italian": "Mi sa che abbiamo sbagliato strada.",
       "literal": "To me it knows that we have taken the wrong road.",
       "natural": "I think we've gone the wrong way.",
-      "note": "'Mi sa che' is a very common spoken phrase. It often uses the indicative."
+      "note": "'Mi sa che' is a very common spoken phrase and normally takes the indicative — here 'abbiamo' is the plain indicative of avere (no subjunctive needed after 'mi sa che')."
     },
     {
       "section": "Core Sentences",
       "italian": "Può darsi che abbiano capito male.",
       "literal": "It can give itself that they have-subjunctive understood badly.",
       "natural": "Maybe they misunderstood.",
-      "note": "'Può darsi che' is a very useful uncertainty phrase and takes the subjunctive."
+      "note": "'Può darsi che' is a very useful uncertainty phrase and takes the subjunctive. 'abbiano' is the subjunctive of avere (loro); the plain indicative would be 'hanno'."
     },
     {
       "section": "More Sentences",
       "italian": "Credo che faccia troppo freddo per uscire.",
       "literal": "I believe that it make too much cold to go out.",
       "natural": "I think it's too cold to go out.",
-      "note": "'Faccia' is the subjunctive of 'fare'. Italian says 'fa freddo' (it makes cold) for 'it's cold'."
+      "note": "'faccia' is the subjunctive of fare; the plain indicative would be 'fa' (Italian says 'fa freddo', literally 'it makes cold', for 'it's cold')."
     },
     {
       "section": "More Sentences",
       "italian": "Spero che tu possa venire alla festa.",
       "literal": "I hope that you can-subjunctive come to the party.",
       "natural": "I hope you can come to the party.",
-      "note": "'Spero che' (I hope) takes the subjunctive. 'Possa' is from 'potere'."
+      "note": "'Spero che' (I hope) takes the subjunctive. 'tu possa' is the subjunctive of potere; the plain indicative would be 'tu puoi'."
     },
     {
       "section": "More Sentences",
       "italian": "Temo che non ci sia più tempo.",
       "literal": "I fear that there be no more time.",
       "natural": "I'm afraid there's no time left.",
-      "note": "'Temo che' (I fear) triggers the subjunctive. 'Ci sia' means 'there is'."
+      "note": "'Temo che' (I fear) triggers the subjunctive. 'ci sia' is the subjunctive of essere; the plain indicative 'there is' would be 'c'è'."
     },
     {
       "section": "More Sentences",
       "italian": "È probabile che arrivino in ritardo.",
       "literal": "It is probable that they arrive-subjunctive late.",
       "natural": "They'll probably arrive late.",
-      "note": "'È probabile che' expresses likelihood, so it takes the subjunctive 'arrivino'."
+      "note": "'È probabile che' expresses likelihood, so it takes the subjunctive 'arrivino'; the plain indicative would be 'arrivano'."
     },
     {
       "section": "More Sentences",
       "italian": "Mi sembra che lui non dica la verità.",
       "literal": "It seems to me that he not say-subjunctive the truth.",
       "natural": "It seems to me he's not telling the truth.",
-      "note": "'Dica' is the subjunctive of 'dire'."
+      "note": "'dica' is the subjunctive of dire; the plain indicative would be 'dice'."
     },
     {
       "section": "More Sentences",
       "italian": "Pare che la riunione vada avanti senza di noi.",
       "literal": "It seems that the meeting go-subjunctive ahead without of us.",
       "natural": "Apparently the meeting is going ahead without us.",
-      "note": "'Vada' is the subjunctive of 'andare'."
+      "note": "'vada' is the subjunctive of andare; the plain indicative would be 'va'."
     },
     {
       "section": "More Sentences",
       "italian": "Non sono sicuro che riesca a finire in tempo.",
       "literal": "I am not sure that he succeed-subjunctive to finish in time.",
       "natural": "I'm not sure he'll manage to finish in time.",
-      "note": "'Riesca' is the subjunctive of 'riuscire' (to manage / succeed)."
+      "note": "'riesca' is the subjunctive of riuscire (to manage / succeed); the plain indicative would be 'riesce'."
     },
     {
       "section": "More Sentences",
       "italian": "Credo che non capisca bene l'italiano.",
       "literal": "I believe that he not understand-subjunctive well the Italian.",
       "natural": "I don't think he understands Italian well.",
-      "note": "'Capisca' is the subjunctive of 'capire'. Italian often keeps the doubt on the 'credo che' clause."
+      "note": "'capisca' is the subjunctive of capire; the plain indicative would be 'capisce'. Italian often keeps the doubt on the 'credo che' clause."
     },
     {
       "section": "More Sentences",
       "italian": "Dubito che lui sappia cosa sta succedendo.",
       "literal": "I doubt that he know-subjunctive what is happening.",
       "natural": "I doubt he knows what's going on.",
-      "note": "'Sappia' is the subjunctive of 'sapere'."
+      "note": "'sappia' is the subjunctive of sapere; the plain indicative would be 'sa'."
     },
     {
       "section": "More Sentences",
       "italian": "Può darsi che vogliano cambiare programma.",
       "literal": "It can give itself that they want-subjunctive to change plan.",
       "natural": "Maybe they want to change the plan.",
-      "note": "'Vogliano' is the subjunctive of 'volere'."
+      "note": "'vogliano' is the subjunctive of volere (loro); the plain indicative would be 'vogliono' (and 'voglia' → 'vuole')."
     }
   ],
   "patternDrill": [
     {
       "italian": "Penso che sia meglio aspettare.",
       "literal": "I think that it be better to wait.",
-      "natural": "I think it's better to wait."
+      "natural": "I think it's better to wait.",
+      "note": "'sia' is the subjunctive of essere; the plain indicative would be 'è'."
     },
     {
       "italian": "Credo che abbia senso.",
       "literal": "I believe that it have sense.",
-      "natural": "I think it makes sense."
+      "natural": "I think it makes sense.",
+      "note": "'abbia' is the subjunctive of avere; the plain indicative would be 'ha'."
     },
     {
       "italian": "Mi sembra che manchi qualcosa.",
       "literal": "It seems to me that something be missing.",
-      "natural": "It seems like something is missing."
+      "natural": "It seems like something is missing.",
+      "note": "'manchi' is the subjunctive of mancare; the plain indicative would be 'manca'."
     },
     {
       "italian": "Pare che abbiano cambiato idea.",
       "literal": "It seems that they have-subjunctive changed idea.",
-      "natural": "Apparently, they changed their mind."
+      "natural": "Apparently, they changed their mind.",
+      "note": "'abbiano' is the subjunctive of avere (loro); the plain indicative would be 'hanno'."
     },
     {
       "italian": "Non credo che funzioni bene.",
       "literal": "I don't believe that it work well.",
-      "natural": "I don't think it works well."
+      "natural": "I don't think it works well.",
+      "note": "'funzioni' is the subjunctive of funzionare; the plain indicative would be 'funziona'."
     }
   ],
   "activeRecall": [
