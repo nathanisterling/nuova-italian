@@ -1,0 +1,219 @@
+{
+  "id": "lesson-002",
+  "title": "Lesson 002 – Making the Subjunctive Automatic",
+  "grammarFocus": "keeping the subjunctive · avere vs essere in the past subjunctive · noun vs verb · anche/ancora/già · never dropping 'che'",
+  "objective": "Make the present and past subjunctive automatic by drilling the five traps that most often break it: reverting to the indicative, choosing the wrong auxiliary, mixing up nouns and verbs, confusing small words, and dropping 'che'.",
+  "corePatterns": [
+    { "pattern": "Penso / Credo / Mi sembra che + congiuntivo", "meaning": "opinion triggers — keep the subjunctive" },
+    { "pattern": "È importante che / Bisogna che + congiuntivo", "meaning": "necessity triggers — keep the subjunctive" },
+    { "pattern": "Passato congiuntivo: abbia/abbiano + participio (avere)", "meaning": "past subjunctive with AVERE" },
+    { "pattern": "Passato congiuntivo: sia/siano + participio concordato (essere)", "meaning": "past subjunctive with ESSERE (participle agrees)" },
+    { "pattern": "è possibile che / può darsi che / sembra che / pare che", "meaning": "uncertainty triggers — 'che' is required" }
+  ],
+  "sentences": [
+    {
+      "section": "Keep the Subjunctive",
+      "italian": "Penso che tu abbia bisogno di riposo.",
+      "literal": "I think that you have-subjunctive need of rest.",
+      "natural": "I think you need some rest.",
+      "note": "Trap: after 'penso che' use the subjunctive 'abbia', NOT the indicative 'hai'. ('avere bisogno di' = to need.)"
+    },
+    {
+      "section": "Keep the Subjunctive",
+      "italian": "Credo che questo metodo funzioni bene.",
+      "literal": "I believe that this method work-subjunctive well.",
+      "natural": "I think this method works well.",
+      "note": "Trap: 'funzioni' (subjunctive) NOT 'funziona' (indicative) after 'credo che'."
+    },
+    {
+      "section": "Keep the Subjunctive",
+      "italian": "Mi sembra che lui faccia sul serio.",
+      "literal": "It seems to me that he do-subjunctive on serious.",
+      "natural": "It seems to me he's serious about it.",
+      "note": "Trap: 'faccia' (subjunctive of fare) NOT 'fa' (indicative). 'fare sul serio' = to mean it / be serious."
+    },
+    {
+      "section": "Keep the Subjunctive",
+      "italian": "È importante che tu sia puntuale.",
+      "literal": "It is important that you be-subjunctive punctual.",
+      "natural": "It's important that you're on time.",
+      "note": "'È importante che' forces the subjunctive: 'sia', NOT the indicative 'sei'."
+    },
+    {
+      "section": "Keep the Subjunctive",
+      "italian": "Bisogna che tu lo faccia subito.",
+      "literal": "It is necessary that you it do-subjunctive right-away.",
+      "natural": "You need to do it right away.",
+      "note": "'Bisogna che' forces the subjunctive: 'tu faccia', NOT the indicative 'tu fai'."
+    },
+    {
+      "section": "Avere or Essere?",
+      "italian": "Penso che abbiano già deciso tutto.",
+      "literal": "I think that they have-subjunctive already decided everything.",
+      "natural": "I think they've already decided everything.",
+      "note": "'decidere' takes AVERE → 'abbiano deciso', NOT 'siano deciso'. With avere the participle does not agree. ('già' = already.)"
+    },
+    {
+      "section": "Avere or Essere?",
+      "italian": "Credo che lei abbia finito il lavoro.",
+      "literal": "I believe that she have-subjunctive finished the work.",
+      "natural": "I think she's finished the work.",
+      "note": "'finire' (with an object) takes AVERE → 'abbia finito'. Participle stays 'finito' — no agreement with avere."
+    },
+    {
+      "section": "Avere or Essere?",
+      "italian": "Non sono sicuro che abbiano capito la domanda.",
+      "literal": "I am not sure that they have-subjunctive understood the question.",
+      "natural": "I'm not sure they understood the question.",
+      "note": "'capire' takes AVERE → 'abbiano capito', NOT 'siano capiti'."
+    },
+    {
+      "section": "Avere or Essere?",
+      "italian": "Mi sembra che siano già partiti.",
+      "literal": "It seems to me that they be-subjunctive already left.",
+      "natural": "It seems to me they've already left.",
+      "note": "'partire' takes ESSERE → 'siano partiti', NOT 'abbiano partito'. With essere the participle AGREES: 'partiti' (m. pl.)."
+    },
+    {
+      "section": "Avere or Essere?",
+      "italian": "Pare che Maria sia arrivata in ritardo.",
+      "literal": "It seems that Maria be-subjunctive arrived late.",
+      "natural": "Apparently Maria arrived late.",
+      "note": "'arrivare' takes ESSERE → 'sia arrivata'. The participle agrees with Maria: 'arrivata' (f. sg.), not 'arrivato'."
+    },
+    {
+      "section": "Avere or Essere?",
+      "italian": "Credo che i ragazzi siano andati a casa.",
+      "literal": "I believe that the boys be-subjunctive gone to home.",
+      "natural": "I think the boys have gone home.",
+      "note": "'andare' takes ESSERE → 'siano andati' (agreeing: m. pl.), NOT 'abbiano andato'."
+    },
+    {
+      "section": "Noun vs Verb",
+      "italian": "Credo che questa funzione non funzioni bene.",
+      "literal": "I believe that this function not work-subjunctive well.",
+      "natural": "I don't think this feature works well.",
+      "note": "Noun vs verb: 'la funzione' = the function/feature (noun); 'funziona / funzioni' = works (verb — subjunctive 'funzioni'). Don't swap them."
+    },
+    {
+      "section": "Noun vs Verb",
+      "italian": "Mi sembra un buon pensiero, ma penso che sia rischioso.",
+      "literal": "To me it seems a good thought, but I think that it be-subjunctive risky.",
+      "natural": "It seems like a good thought, but I think it's risky.",
+      "note": "Noun vs verb: 'il pensiero' = the thought (noun); 'penso' = I think (verb, from pensare). Same root, different words. Also 'sia' NOT 'è' after 'penso che'."
+    },
+    {
+      "section": "Small Words",
+      "italian": "Penso che venga anche lui alla riunione.",
+      "literal": "I think that come-subjunctive also him to-the meeting.",
+      "natural": "I think he's coming to the meeting too.",
+      "note": "'anche lui' = him too / he too (NOT 'ancora'). 'ancora' means still/yet — keep them apart. 'venga' is the subjunctive of venire (not 'viene')."
+    },
+    {
+      "section": "Small Words",
+      "italian": "Credo che lei non abbia ancora deciso.",
+      "literal": "I believe that she not have-subjunctive yet decided.",
+      "natural": "I think she hasn't decided yet.",
+      "note": "'non ancora' = not yet; 'già' = already. Compare 'abbiano già deciso' (already) with this 'non abbia ancora deciso' (not yet). 'decidere' takes avere → 'abbia deciso'."
+    },
+    {
+      "section": "Small Words",
+      "italian": "Sembra che siano ancora a scuola.",
+      "literal": "It seems that they be-subjunctive still at school.",
+      "natural": "It seems they're still at school.",
+      "note": "'ancora' here = still. Don't confuse 'ancora' (still/yet) with 'anche' (also/too). 'sembra che' + subjunctive 'siano'."
+    },
+    {
+      "section": "Don't Drop 'che'",
+      "italian": "È possibile che piova domani.",
+      "literal": "It is possible that rain-subjunctive tomorrow.",
+      "natural": "It's possible it'll rain tomorrow.",
+      "note": "Don't drop 'che': say 'è possibile CHE piova', never 'è possibile piova'. 'piova' is the subjunctive of piovere."
+    },
+    {
+      "section": "Don't Drop 'che'",
+      "italian": "Può darsi che abbiano ragione loro.",
+      "literal": "It can give-itself that they have-subjunctive reason they.",
+      "natural": "Maybe they're the ones who are right.",
+      "note": "Keep 'che': 'può darsi CHE abbiano...'. Dropping 'che' is a common mistake. 'abbiano' — avere; 'avere ragione' = to be right."
+    }
+  ],
+  "patternDrill": [
+    {
+      "italian": "Credo che abbia capito.",
+      "literal": "I believe that he have-subjunctive understood.",
+      "natural": "I think he understood.",
+      "note": "capire → AVERE → 'abbia capito', not 'sia capito'."
+    },
+    {
+      "italian": "Penso che siano partiti.",
+      "literal": "I think that they be-subjunctive left.",
+      "natural": "I think they've left.",
+      "note": "partire → ESSERE → 'siano partiti' (participle agrees)."
+    },
+    {
+      "italian": "Mi sembra che tu faccia bene.",
+      "literal": "It seems to me that you do-subjunctive well.",
+      "natural": "It seems you're doing the right thing.",
+      "note": "'faccia' (subjunctive of fare) NOT 'fai' (indicative)."
+    },
+    {
+      "italian": "È possibile che sia già arrivato.",
+      "literal": "It is possible that he be-subjunctive already arrived.",
+      "natural": "It's possible he's already arrived.",
+      "note": "arrivare → ESSERE → 'sia arrivato'; and keep 'che'."
+    },
+    {
+      "italian": "Non credo che funzioni.",
+      "literal": "I don't believe that it work-subjunctive.",
+      "natural": "I don't think it works.",
+      "note": "'funzioni' = works (verb, subjunctive) — not 'funziona', and not the noun 'la funzione'."
+    }
+  ],
+  "activeRecall": [
+    { "prompt": "I think you need some rest.", "answer": "Penso che tu abbia bisogno di riposo." },
+    { "prompt": "I think they've already decided everything.", "answer": "Penso che abbiano già deciso tutto." },
+    { "prompt": "It seems to me they've already left.", "answer": "Mi sembra che siano già partiti." },
+    { "prompt": "I think he's coming to the meeting too.", "answer": "Penso che venga anche lui alla riunione." },
+    { "prompt": "It's possible it'll rain tomorrow.", "answer": "È possibile che piova domani." }
+  ],
+  "conversationBuilder": [
+    { "speaker": "A", "italian": "Credo che Luca abbia già finito il progetto.", "natural": "I think Luca has already finished the project." },
+    { "speaker": "B", "italian": "Non sono sicuro che l'abbia finito. Mi sembra che sia ancora al lavoro.", "natural": "I'm not sure he's finished it. It seems he's still at work." },
+    { "speaker": "A", "italian": "Pare che gli altri siano già partiti, però.", "natural": "Apparently the others have already left, though." },
+    { "speaker": "B", "italian": "Può darsi. È possibile che venga anche lui più tardi.", "natural": "Maybe. It's possible he'll come too later." },
+    { "speaker": "A", "italian": "Sì, penso che sia una buona idea aspettarlo.", "natural": "Yes, I think it's a good idea to wait for him." }
+  ],
+  "grammarExplanation": {
+    "intro": "Once you know the subjunctive exists, the hard part is using it automatically. This lesson drills the five traps that most often break it for B1–B2 learners.",
+    "comparison": [
+      { "label": "Indicative", "italian": "Funziona bene.", "english": "It works well." },
+      { "label": "Subjunctive", "italian": "Credo che funzioni bene.", "english": "I think it works well." }
+    ],
+    "explanation": "The five traps: (1) slipping back to the indicative after a trigger; (2) the wrong auxiliary in the past subjunctive — avere (abbia/abbiano) vs essere (sia/siano), and with essere the participle agrees; (3) mixing up a noun with a verb (la funzione vs funziona); (4) small confusable words (anche vs ancora, già vs non ancora); (5) dropping the required 'che'.",
+    "commonTriggers": [
+      "penso che", "credo che", "mi sembra che", "è importante che", "bisogna che",
+      "sembra che", "pare che", "è possibile che", "può darsi che"
+    ],
+    "usefulForms": [
+      { "verb": "essere (aux)", "form": "sia / siano + participio concordato" },
+      { "verb": "avere (aux)", "form": "abbia / abbiano + participio (no agreement)" },
+      { "verb": "fare", "form": "faccia (not fa)" },
+      { "verb": "funzionare", "form": "funzioni (verb) ≠ la funzione (noun)" },
+      { "verb": "decidere", "form": "abbiano deciso (avere)" },
+      { "verb": "finire", "form": "abbia finito (avere)" },
+      { "verb": "capire", "form": "abbia capito (avere)" },
+      { "verb": "partire", "form": "siano partiti/e (essere)" },
+      { "verb": "arrivare", "form": "sia arrivato/a (essere)" },
+      { "verb": "andare", "form": "siano andati/e (essere)" }
+    ],
+    "note": "Small words: 'anche (lui/lei)' = also/too, NOT 'ancora' = still/yet; 'già' = already, 'non ancora' = not yet. And never drop 'che' after è possibile, può darsi, sembra, pare."
+  },
+  "masteryChecklist": [
+    "Keep the subjunctive after every trigger — never slip back to the indicative (sia not è, faccia not fa, funzioni not funziona).",
+    "Pick the right auxiliary in the past subjunctive: avere (abbia/abbiano) vs essere (sia/siano), and make the participle agree with essere.",
+    "Tell noun from verb: la funzione vs funziona/funzioni; il pensiero vs penso.",
+    "Use anche (lui/lei) vs ancora, and già vs non ancora, correctly.",
+    "Never drop 'che' after è possibile, può darsi, sembra, or pare."
+  ]
+}
