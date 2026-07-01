@@ -661,11 +661,20 @@
 
   async function loadLesson(id, { fromPicker } = {}) {
     const meta = lessonMeta(id);
+    let data;
     try {
       const res = await fetch(meta.url + "?_=" + Date.now(), { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
-      lesson = await res.json();
+      data = await res.json();
     } catch (e) {
+      if (lesson) {
+        // A lesson is already loaded — keep the app usable and just report.
+        console.warn("[Nuova] failed to load", meta.url, e);
+        status(`Couldn't load ${meta.title} (${e}). It may still be deploying — try again in a moment.`);
+        renderLessonPicker(); // keep the previously-loaded lesson marked active
+        return false;
+      }
+      // First load with nothing yet — show the full-page help message.
       document.body.innerHTML =
         `<div style="padding:24px;font-family:sans-serif;color:#0b1d3a">
           <h2>Couldn't load the lesson.</h2>
@@ -676,6 +685,7 @@
         </div>`;
       return false;
     }
+    lesson = data;
     currentLessonId = id;
     loadProgress();               // load THIS lesson's own progress (kept separate)
     save();                       // persist selection immediately
