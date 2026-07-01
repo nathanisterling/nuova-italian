@@ -426,12 +426,26 @@
       const finished = await runSentence(token);
       if (!finished || token !== runToken) break;
       if (mode === "driving") {
+        // Continuous play: auto-advance to the next sentence…
         if (idx < lesson.sentences.length - 1) { idx++; render(); save(); continue; }
-        status("Driving mode complete — end of lesson."); break;
+        // …but once the LAST sentence has played, stop for good (no looping).
+        finishLesson();
+        break;
       }
-      break;
+      break; // other modes: one sentence per Play tap
     }
     if (token === runToken) { isPlaying = false; setPlayUI(false); }
+  }
+
+  // Called when continuous/driving playback reaches the end of the lesson.
+  function finishLesson() {
+    isPlaying = false;               // ensure the loop can't continue
+    progress.completedSentences = lesson.sentences.map((_, i) => i);
+    progress.completedLesson = true;
+    save();
+    renderProgress();
+    setPlayUI(false);                // reset Play button to its idle ▶ state
+    status(`🎉 Lesson complete — you reached the end of all ${lesson.sentences.length} sentences.`);
   }
 
   function stop() {
