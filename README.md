@@ -130,6 +130,17 @@ Controls: Play/Pause, Repeat, Previous, Next, Mark difficult, Complete sentence.
 Audio settings let you set Italian and English speed (Slow/Normal/Fast) and pick a
 specific voice. All preferences and progress persist in `localStorage`.
 
+Two extra player controls:
+
+- **English audio toggle** — a pill button ("🔊 English audio: On/Off"). When off,
+  the spoken English (literal + natural) is skipped across every mode while the
+  Italian audio still plays and the English text stays on screen. In Active Recall
+  with English off, you still get the recall pause followed by the Italian. Default
+  is on; the choice is saved to `localStorage`.
+- **Play count** — "Played: N total · this sentence: M" near the controls. It
+  increments once each time a sentence's audio sequence starts (including each
+  auto-advance step in Driving mode) and persists in `localStorage`.
+
 ---
 
 ## Audio: ElevenLabs (premium Italian) + Web Speech fallback

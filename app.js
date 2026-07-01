@@ -105,14 +105,16 @@
     enSpeed: "normal",
     itVoice: "",                 // browser fallback Italian voice
     enVoice: "",
-    itVoiceEleven: ELEVEN.defaultVoice
+    itVoiceEleven: ELEVEN.defaultVoice,
+    speakEnglish: true           // when false, English is not spoken aloud (text still shows)
   };
   let progress = {
     current: 0,
     completedLesson: false,
     completedSentences: [],
     difficult: [],
-    repetitions: 0,
+    repetitions: 0,             // total sentence-plays across the whole lesson
+    sentencePlays: {},          // per-sentence play counts, keyed by index
     mode: "full",
     prefs: prefs
   };
@@ -403,10 +405,22 @@
 
   async function runSentence(token) {
     const s = lesson.sentences[idx];
+    // Count this play: one per sentence-audio-start (incl. driving auto-advance).
+    progress.repetitions = (progress.repetitions || 0) + 1;
+    progress.sentencePlays = progress.sentencePlays || {};
+    progress.sentencePlays[idx] = (progress.sentencePlays[idx] || 0) + 1;
+    save();
+    renderPlayCount();
+
     for (const step of buildSteps(s)) {
       if (token !== runToken || !isPlaying) return false;
-      if (step.pause) await wait(step.pause, token);
-      else await speak(step.speak, step.lang, token);
+      if (step.pause) {
+        await wait(step.pause, token);
+      } else if (step.lang === "en" && !prefs.speakEnglish) {
+        // English audio muted: skip the spoken English (text still shows on screen).
+      } else {
+        await speak(step.speak, step.lang, token);
+      }
       if (token !== runToken || !isPlaying) return false;
     }
     return true;
@@ -420,7 +434,6 @@
     isPlaying = true;
     const token = ++runToken;
     setPlayUI(true);
-    progress.repetitions++; save();
 
     while (isPlaying && token === runToken) {
       const finished = await runSentence(token);
@@ -468,7 +481,7 @@
   function goTo(i) { stop(); idx = Math.min(Math.max(0, i), lesson.sentences.length - 1); render(); save(); }
   function next() { goTo(idx + 1); }
   function prev() { goTo(idx - 1); }
-  function repeat() { stop(); progress.repetitions++; save(); play(); }
+  function repeat() { stop(); play(); } // runSentence counts the replay
 
   function setMode(m) {
     if (!MODES[m]) return;
@@ -501,6 +514,31 @@
     $("grammar-note-text").textContent = s.note || "";
     $("recall-hint").hidden = mode !== "recall";
     renderDifficultBtn(); renderProgress(); setAudioSource();
+    renderPlayCount(); renderEnglishToggle();
+  }
+
+  function renderPlayCount() {
+    const el = $("play-count");
+    if (!el) return;
+    const total = progress.repetitions || 0;
+    const here = (progress.sentencePlays && progress.sentencePlays[idx]) || 0;
+    el.textContent = `Played: ${total} total · this sentence: ${here}`;
+  }
+
+  function renderEnglishToggle() {
+    const btn = $("btn-en-toggle");
+    if (!btn) return;
+    const on = prefs.speakEnglish !== false;
+    btn.setAttribute("aria-pressed", on ? "true" : "false");
+    btn.classList.toggle("off", !on);
+    btn.textContent = on ? "🔊 English audio: On" : "🔇 English audio: Off";
+  }
+
+  function toggleEnglish() {
+    prefs.speakEnglish = !(prefs.speakEnglish !== false);
+    save();
+    renderEnglishToggle();
+    status(prefs.speakEnglish ? "English audio on." : "English audio off — Italian only.");
   }
 
   function renderDifficultBtn() {
@@ -589,6 +627,7 @@
     $("btn-repeat").addEventListener("click", repeat);
     $("btn-difficult").addEventListener("click", markDifficult);
     $("btn-complete").addEventListener("click", completeSentence);
+    $("btn-en-toggle").addEventListener("click", toggleEnglish);
   }
 
   // ---------- Boot ----------
