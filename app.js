@@ -8,8 +8,14 @@
   "use strict";
 
   // ---------- Constants ----------
-  const STORE_KEY = "nuova.progress.v1";
-  const LESSON_URL = "data/lesson-001.json";
+  // Available lessons. Add more here (same JSON schema) to grow the picker.
+  const LESSONS = [
+    { id: "lesson-001", title: "Lesson 001 – Talking About Uncertainty", url: "data/lesson-001.json" },
+    { id: "lesson-002", title: "Lesson 002 – Making the Subjunctive Automatic", url: "data/lesson-002.json" }
+  ];
+  const LESSON_KEY = "nuova.lesson";                 // last-selected lesson id
+  // Per-lesson progress key so lessons never overwrite each other's progress.
+  const storeKeyFor = (id) => `nuova.progress.${id}.v1`;
 
   const RATE = { slow: 0.78, normal: 1.0, fast: 1.22 };
 
@@ -46,6 +52,7 @@
 
   // ---------- State ----------
   let lesson = null;
+  let currentLessonId = LESSONS[0].id;   // which lesson is loaded
   let voices = [];            // Web Speech voices
   let idx = 0;
   let mode = "full";
@@ -108,16 +115,19 @@
     itVoiceEleven: ELEVEN.defaultVoice,
     speakEnglish: true           // when false, English is not spoken aloud (text still shows)
   };
-  let progress = {
-    current: 0,
-    completedLesson: false,
-    completedSentences: [],
-    difficult: [],
-    repetitions: 0,             // total sentence-plays across the whole lesson
-    sentencePlays: {},          // per-sentence play counts, keyed by index
-    mode: "full",
-    prefs: prefs
-  };
+  const PREFS_KEY = "nuova.prefs.v1";   // audio prefs are global (shared across lessons)
+  function freshProgress() {
+    return {
+      current: 0,
+      completedLesson: false,
+      completedSentences: [],
+      difficult: [],
+      repetitions: 0,             // total sentence-plays for THIS lesson
+      sentencePlays: {},          // per-sentence play counts, keyed by index
+      mode: "full"
+    };
+  }
+  let progress = freshProgress();
 
   // ---------- DOM ----------
   const $ = (id) => document.getElementById(id);
@@ -126,22 +136,38 @@
 
   // ---------- Storage ----------
   function load() {
+    // Global audio prefs (voice, speed, English toggle) — shared across lessons.
+    try { const p = JSON.parse(localStorage.getItem(PREFS_KEY)); if (p) prefs = Object.assign(prefs, p); } catch (e) {}
+    // Last-selected lesson.
     try {
-      const raw = localStorage.getItem(STORE_KEY);
-      if (raw) {
-        const saved = JSON.parse(raw);
-        progress = Object.assign(progress, saved);
-        if (saved.prefs) prefs = Object.assign(prefs, saved.prefs);
-        mode = saved.mode || mode;
-        idx = Math.max(0, saved.current || 0);
+      const lid = localStorage.getItem(LESSON_KEY);
+      if (lid && LESSONS.some(l => l.id === lid)) currentLessonId = lid;
+    } catch (e) {}
+    // Legacy: migrate old single-key progress into lesson-001's slot once.
+    try {
+      if (!localStorage.getItem(storeKeyFor("lesson-001"))) {
+        const old = localStorage.getItem("nuova.progress.v1");
+        if (old) localStorage.setItem(storeKeyFor("lesson-001"), old);
       }
     } catch (e) {}
+    loadProgress();
+  }
+  function loadProgress() {
+    // Reset to defaults, then merge this lesson's saved progress (kept separate per lesson).
+    progress = freshProgress();
+    try {
+      const raw = localStorage.getItem(storeKeyFor(currentLessonId));
+      if (raw) progress = Object.assign(progress, JSON.parse(raw));
+    } catch (e) {}
+    mode = progress.mode || "full";
+    idx = Math.max(0, progress.current || 0);
   }
   function save() {
     progress.current = idx;
     progress.mode = mode;
-    progress.prefs = prefs;
-    try { localStorage.setItem(STORE_KEY, JSON.stringify(progress)); } catch (e) {}
+    try { localStorage.setItem(storeKeyFor(currentLessonId), JSON.stringify(progress)); } catch (e) {}
+    try { localStorage.setItem(PREFS_KEY, JSON.stringify(prefs)); } catch (e) {}
+    try { localStorage.setItem(LESSON_KEY, currentLessonId); } catch (e) {}
   }
 
   // ---------- Web Speech voices ----------
@@ -630,19 +656,13 @@
     $("btn-en-toggle").addEventListener("click", toggleEnglish);
   }
 
-  // ---------- Boot ----------
-  async function init() {
-    load();
-    wireControls(); wireSettings(); wireCollapsibles();
-    populateElevenSelector(); syncSettingsUI();
+  // ---------- Lesson loading / picker ----------
+  function lessonMeta(id) { return LESSONS.find(l => l.id === id) || LESSONS[0]; }
 
-    if ("speechSynthesis" in window) {
-      refreshVoices();
-      window.speechSynthesis.onvoiceschanged = refreshVoices;
-    } else { updateVoiceWarning(); }
-
+  async function loadLesson(id, { fromPicker } = {}) {
+    const meta = lessonMeta(id);
     try {
-      const res = await fetch(LESSON_URL, { cache: "no-store" });
+      const res = await fetch(meta.url + "?_=" + Date.now(), { cache: "no-store" });
       if (!res.ok) throw new Error("HTTP " + res.status);
       lesson = await res.json();
     } catch (e) {
@@ -654,16 +674,50 @@
           <p>See the README for the one-line command. (On GitHub Pages this works automatically.)</p>
           <pre>${String(e)}</pre>
         </div>`;
-      return;
+      return false;
     }
-
-    $("btn-continue").disabled = progress.completedSentences.length === 0 && progress.current === 0;
-    setAudioSource();
+    currentLessonId = id;
+    loadProgress();               // load THIS lesson's own progress (kept separate)
+    save();                       // persist selection immediately
+    clipCache.clear();            // clips are lesson-specific text → drop old cache
+    renderLessonPicker();
     renderHome();
+    $("btn-continue").disabled = progress.completedSentences.length === 0 && progress.current === 0;
+    if (fromPicker) status(`Loaded ${meta.title}`);
+    return true;
+  }
+
+  function renderLessonPicker() {
+    const bar = $("lesson-picker");
+    if (!bar) return;
+    bar.innerHTML = "";
+    LESSONS.forEach(l => {
+      const b = document.createElement("button");
+      b.className = "lesson-btn" + (l.id === currentLessonId ? " active" : "");
+      b.textContent = l.title;
+      b.addEventListener("click", () => { if (l.id !== currentLessonId) loadLesson(l.id, { fromPicker: true }); });
+      bar.appendChild(b);
+    });
+  }
+
+  // ---------- Boot ----------
+  async function init() {
+    load();
+    wireControls(); wireSettings(); wireCollapsibles();
+    populateElevenSelector(); syncSettingsUI();
+
+    if ("speechSynthesis" in window) {
+      refreshVoices();
+      window.speechSynthesis.onvoiceschanged = refreshVoices;
+    } else { updateVoiceWarning(); }
+
     window.Nuova = {
-      get state(){ return { idx, mode, isPlaying, elevenDisabled, audioUnlocked, keyIndex, cacheSize: clipCache.size, total: lesson ? lesson.sentences.length : 0, progress, prefs, voices: voices.length }; },
-      MODES, ELEVEN, fetchItalianClip
+      get state(){ return { lessonId: currentLessonId, idx, mode, isPlaying, elevenDisabled, audioUnlocked, keyIndex, cacheSize: clipCache.size, total: lesson ? lesson.sentences.length : 0, lessons: LESSONS.length, progress, prefs, voices: voices.length }; },
+      MODES, ELEVEN, LESSONS, fetchItalianClip, loadLesson
     };
+
+    const ok = await loadLesson(currentLessonId);
+    if (ok) setAudioSource();
   }
 
   document.addEventListener("DOMContentLoaded", init);

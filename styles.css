@@ -53,6 +53,24 @@ html, body {
 
 .home-actions { display: flex; flex-direction: column; gap: 12px; }
 
+/* ===== Lesson picker ===== */
+.picker-label {
+  font-size: 12px; text-transform: uppercase; letter-spacing: .6px;
+  color: var(--muted); font-weight: 700; margin: 0 0 10px;
+}
+.lesson-picker { display: flex; flex-direction: column; gap: 10px; }
+.lesson-btn {
+  text-align: left; border: 1px solid var(--line); background: var(--surface);
+  color: var(--ink); border-radius: 14px; padding: 14px 16px; font-size: 15px;
+  font-weight: 600; cursor: pointer; min-height: var(--tap);
+  transition: border-color .15s ease, background .15s ease;
+}
+.lesson-btn:hover { border-color: var(--accent); }
+.lesson-btn.active {
+  border-color: var(--accent); background: var(--accent-soft); color: var(--accent-ink);
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
 /* ===== Buttons ===== */
 .btn {
   font-size: 16px; font-weight: 600; border-radius: 14px; border: none;

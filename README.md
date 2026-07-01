@@ -67,17 +67,40 @@ with no changes.
 
 ---
 
-## Add more lessons
+## Lessons and the lesson picker
 
-1. Copy `data/lesson-001.json` to `data/lesson-002.json` and edit the content,
+Two lessons ship today:
+
+- **Lesson 001 – Talking About Uncertainty** (`data/lesson-001.json`, 20 sentences)
+- **Lesson 002 – Making the Subjunctive Automatic** (`data/lesson-002.json`, 18
+  sentences) — drills five recurring traps: reverting to the indicative after a
+  trigger, the wrong past-subjunctive auxiliary (avere vs essere with agreement),
+  noun-vs-verb mix-ups, small confusable words (anche/ancora, già/non ancora), and
+  dropping "che".
+
+The home screen has a **lesson picker**; pick a lesson and it loads that JSON. The
+last-selected lesson is saved to `localStorage` under `nuova.lesson`.
+
+### Add another lesson
+
+1. Copy `data/lesson-001.json` to `data/lesson-003.json` and edit the content,
    keeping the same schema (below).
-2. To make the app load a different file, change `LESSON_URL` near the top of
-   `app.js`. (A lesson picker is an easy next step — every lesson follows the
-   same schema, so you can `fetch()` a list and let the user choose.)
+2. Add one line to the `LESSONS` array near the top of `app.js`:
 
-The progress for each user is stored under the localStorage key
-`nuova.progress.v1`. If you add per-lesson tracking, namespace this key by
-lesson id.
+   ```js
+   { id: "lesson-003", title: "Lesson 003 – …", url: "data/lesson-003.json" }
+   ```
+
+   The picker, all five modes, the English-audio toggle, the play count, auto-stop,
+   and the premium voice all work with any lesson automatically.
+
+### Progress storage
+
+Progress is stored **per lesson** so lessons never overwrite each other:
+`nuova.progress.<lessonId>.v1` (e.g. `nuova.progress.lesson-002.v1`). Audio
+preferences (voice, speed, English on/off) are global, under `nuova.prefs.v1`.
+Old single-key progress (`nuova.progress.v1`) is migrated into lesson-001's slot
+automatically.
 
 ---
 
